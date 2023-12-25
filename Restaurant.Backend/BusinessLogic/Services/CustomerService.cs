@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using BusinessLogic.DTO;
 using BusinessLogic.Interfaces;
+using BusinessLogic.Validation.Customer;
 using DataAccess.Entities;
 using DataAccess.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -27,7 +28,7 @@ namespace BusinessLogic.Services
 
         public async Task AddAsync(CustomerDTO model)
         {
-            // CustomerValidation.CheckCustomer(model);
+            CustomerValidation.CheckCustomer(model);
 
             var customer = _mapper.Map<Customer>(model);
 
@@ -46,7 +47,7 @@ namespace BusinessLogic.Services
 
         public async Task UpdateAsync(CustomerDTO model)
         {
-            // CustomerValidation.CheckCustomer(model);
+            CustomerValidation.CheckCustomer(model);
 
             var existingCustomer = await _unit.Repository.GetByIdAsync(model.Id);
 

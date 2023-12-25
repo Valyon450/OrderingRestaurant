@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using BusinessLogic.DTO;
 using BusinessLogic.Interfaces;
+using BusinessLogic.Validation.Order;
 using DataAccess.Entities;
 using DataAccess.Interfaces;
 
@@ -28,7 +29,7 @@ namespace BusinessLogic.Services
 
         public async Task AddAsync(OrderDTO model)
         {
-            // OrderValidation.CheckOrder(model);
+            OrderValidation.CheckOrder(model);
 
             var order = _mapper.Map<Order>(model);
 
@@ -47,7 +48,7 @@ namespace BusinessLogic.Services
 
         public async Task UpdateAsync(OrderDTO model)
         {
-            // OrderValidation.CheckOrder(model);
+            OrderValidation.CheckOrder(model);
             var existingOrder = await _unit.Repository.GetByIdAsync(model.Id);
 
             if (existingOrder != null)

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using BusinessLogic.DTO;
 using BusinessLogic.Interfaces;
+using BusinessLogic.Validation.Dish;
 using DataAccess.Entities;
 using DataAccess.Interfaces;
 
@@ -28,7 +29,7 @@ namespace BusinessLogic.Services
 
         public async Task AddAsync(DishDTO model)
         {
-            // DishValidation.CheckDish(model);
+            DishValidation.CheckDish(model);
 
             var dish = _mapper.Map<Dish>(model);
 
@@ -47,7 +48,7 @@ namespace BusinessLogic.Services
 
         public async Task UpdateAsync(DishDTO model)
         {
-            // DishValidation.CheckDish(model);
+            DishValidation.CheckDish(model);
             var existingDish = await _unit.Repository.GetByIdAsync(model.Id);
 
             if (existingDish != null)

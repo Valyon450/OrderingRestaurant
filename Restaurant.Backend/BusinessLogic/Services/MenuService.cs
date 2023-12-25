@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using BusinessLogic.DTO;
 using BusinessLogic.Interfaces;
+using BusinessLogic.Validation.Customer;
 using DataAccess.Entities;
 using DataAccess.Interfaces;
 
@@ -26,7 +27,7 @@ namespace BusinessLogic.Services
 
         public async Task AddPriceListNoteAsync(PriceListNoteDTO model)
         {
-            // PriceListNoteValidation.CheckPriceListNote(model);
+            PriceListNoteValidation.CheckPriceListNote(model);
 
             var note = _mapper.Map<PriceListNote>(model);
 
